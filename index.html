@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="kibble">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kibble (KBL) — The Bitcoin Cat Token</title>
+  <meta name="description" content="Kibble (KBL) is a Bitcoin-native OP20 token built on OPNet. 21 million supply. Purr." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#" class="nav__logo">
+      <div class="nav__logo-icon">
+        <!-- Cat face SVG logo -->
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="17" r="11" stroke="var(--accent-primary)" stroke-width="2"/>
+          <!-- ears -->
+          <path d="M8 10 L5 4 L11 8 Z" fill="var(--accent-primary)" opacity="0.8"/>
+          <path d="M24 10 L27 4 L21 8 Z" fill="var(--accent-primary)" opacity="0.8"/>
+          <!-- eyes -->
+          <ellipse cx="12" cy="16" rx="1.5" ry="2" fill="var(--accent-primary)"/>
+          <ellipse cx="20" cy="16" rx="1.5" ry="2" fill="var(--accent-primary)"/>
+          <!-- nose -->
+          <path d="M15 19.5 L16 18.5 L17 19.5 L16 20.5 Z" fill="var(--accent-primary)"/>
+          <!-- whiskers -->
+          <line x1="10" y1="20" x2="14" y2="19.5" stroke="var(--accent-primary)" stroke-width="0.8" opacity="0.6"/>
+          <line x1="10" y1="21.5" x2="14" y2="20.5" stroke="var(--accent-primary)" stroke-width="0.8" opacity="0.6"/>
+          <line x1="22" y1="20" x2="18" y2="19.5" stroke="var(--accent-primary)" stroke-width="0.8" opacity="0.6"/>
+          <line x1="22" y1="21.5" x2="18" y2="20.5" stroke="var(--accent-primary)" stroke-width="0.8" opacity="0.6"/>
+        </svg>
+      </div>
+      <span class="nav__logo-text">Kibble</span>
+    </a>
+    <div class="nav__links">
+      <a href="#stats" class="nav__link">Stats</a>
+      <a href="#buy" class="nav__link">Buy KBL</a>
+      <a href="#about" class="nav__link">About</a>
+    </div>
+    <button class="btn btn--connect" id="connectBtn">Connect Wallet</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero__bg-orb hero__bg-orb--1"></div>
+  <div class="hero__bg-orb hero__bg-orb--2"></div>
+  <canvas class="hero__particles" id="particleCanvas"></canvas>
+
+  <!-- Decorative cat silhouette -->
+  <div class="hero__cat-deco" aria-hidden="true">
+    <svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="60" cy="65" rx="35" ry="28" fill="var(--accent-glow-soft)"/>
+      <circle cx="60" cy="48" r="22" fill="var(--accent-glow-soft)"/>
+      <path d="M40 32 L32 14 L48 26 Z" fill="var(--accent-glow-soft)"/>
+      <path d="M80 32 L88 14 L72 26 Z" fill="var(--accent-glow-soft)"/>
+      <ellipse cx="52" cy="46" rx="3" ry="4" fill="var(--accent-primary)" opacity="0.3"/>
+      <ellipse cx="68" cy="46" rx="3" ry="4" fill="var(--accent-primary)" opacity="0.3"/>
+      <path d="M57 52 L60 49 L63 52 L60 55 Z" fill="var(--accent-primary)" opacity="0.4"/>
+      <line x1="42" y1="52" x2="55" y2="51" stroke="var(--accent-primary)" stroke-width="1.2" opacity="0.3"/>
+      <line x1="42" y1="55" x2="55" y2="53.5" stroke="var(--accent-primary)" stroke-width="1.2" opacity="0.3"/>
+      <line x1="78" y1="52" x2="65" y2="51" stroke="var(--accent-primary)" stroke-width="1.2" opacity="0.3"/>
+      <line x1="78" y1="55" x2="65" y2="53.5" stroke="var(--accent-primary)" stroke-width="1.2" opacity="0.3"/>
+      <path d="M60 70 Q50 78 40 82 Q55 88 60 85 Q65 88 80 82 Q70 78 60 70Z" fill="var(--accent-glow-soft)"/>
+    </svg>
+  </div>
+
+  <div class="hero__content section-content">
+    <div class="hero__badge">Built on Bitcoin via OPNet</div>
+    <h1 class="hero__headline">The Cat That<br/><span class="hero__headline--accent">Rules Bitcoin.</span></h1>
+    <p class="hero__sub">Kibble (KBL) is a Bitcoin-native OP20 token with a hard cap of 21 million — because cats don't share, and neither does Bitcoin. No VCs. No presale. Pure on-chain.</p>
+    <div class="hero__cta-group">
+      <a href="#buy" class="btn btn--primary btn--lg">Get KBL</a>
+      <a href="#stats" class="btn btn--ghost btn--lg">View Stats</a>
+    </div>
+    <div class="hero__ticker" id="heroTicker">
+      <span class="hero__ticker-item">21M Max Supply</span>
+      <span class="hero__ticker-sep">|</span>
+      <span class="hero__ticker-item">8 Decimals</span>
+      <span class="hero__ticker-sep">|</span>
+      <span class="hero__ticker-item">OPNet Testnet</span>
+      <span class="hero__ticker-sep">|</span>
+      <span class="hero__ticker-item">Bitcoin L1</span>
+    </div>
+  </div>
+  <div class="hero__scroll-hint">
+    <div class="hero__scroll-line"></div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<section class="stats-bar" id="stats">
+  <div class="stats-bar__inner section-content">
+    <div class="stats-bar__item">
+      <span class="stats-bar__value" id="statSupply">—</span>
+      <span class="stats-bar__label">Circulating Supply</span>
+    </div>
+    <div class="stats-bar__divider"></div>
+    <div class="stats-bar__item">
+      <span class="stats-bar__value">21,000,000</span>
+      <span class="stats-bar__label">Max Supply</span>
+    </div>
+    <div class="stats-bar__divider"></div>
+    <div class="stats-bar__item">
+      <span class="stats-bar__value">8</span>
+      <span class="stats-bar__label">Decimals</span>
+    </div>
+    <div class="stats-bar__divider"></div>
+    <div class="stats-bar__item">
+      <span class="stats-bar__value" id="statHolder">—</span>
+      <span class="stats-bar__label">Your Balance</span>
+    </div>
+  </div>
+</section>
+
+<!-- WALLET PANEL -->
+<section class="wallet-section section-content" id="walletPanel" style="display:none">
+  <div class="wallet-card">
+    <div class="wallet-card__header">
+      <span class="wallet-card__label">Connected Wallet</span>
+      <button class="btn btn--ghost btn--sm" id="disconnectBtn">Disconnect</button>
+    </div>
+    <div class="wallet-card__address" id="walletAddress">—</div>
+    <div class="wallet-card__balance-row">
+      <div class="wallet-card__balance-item">
+        <span class="wallet-card__balance-label">KBL Balance</span>
+        <span class="wallet-card__balance-value" id="kblBalance">—</span>
+      </div>
+      <div class="wallet-card__balance-item">
+        <span class="wallet-card__balance-label">BTC Balance</span>
+        <span class="wallet-card__balance-value" id="btcBalance">—</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUY SECTION -->
+<section class="buy-section" id="buy">
+  <div class="buy-section__inner section-content">
+    <div class="buy-section__header">
+      <h2 class="section-title">Feed the <span class="text-accent">Cat.</span></h2>
+      <p class="section-sub">Swap BTC for Kibble directly via OPNet's NativeSwap — no bridges, no wrapped tokens. Just pure cat fuel.</p>
+    </div>
+
+    <div class="swap-card">
+      <div class="swap-card__header">
+        <span class="swap-card__title">Swap BTC for KBL</span>
+        <span class="swap-card__badge">Powered by NativeSwap</span>
+      </div>
+
+      <div class="swap-card__body">
+        <div class="swap-input-group">
+          <label class="swap-input-group__label">You Pay</label>
+          <div class="swap-input-group__row">
+            <input
+                    class="swap-input"
+                    type="number"
+                    id="btcInput"
+                    placeholder="0.00000000"
+                    min="0"
+                    step="0.00001"
+            />
+            <div class="swap-token-badge">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#f7931a" stroke-width="1.5"/><text x="8" y="12" text-anchor="middle" font-size="8" font-family="Poppins" font-weight="700" fill="#f7931a">B</text></svg>
+              BTC
+            </div>
+          </div>
+        </div>
+
+        <div class="swap-arrow">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 3v14M4 13l6 6 6-6" stroke="var(--accent-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+        <div class="swap-input-group">
+          <label class="swap-input-group__label">You Receive (estimated)</label>
+          <div class="swap-input-group__row">
+            <input
+                    class="swap-input swap-input--readonly"
+                    type="text"
+                    id="kblOutput"
+                    placeholder="0.00000000"
+                    readonly
+            />
+            <div class="swap-token-badge swap-token-badge--kbl">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="var(--accent-primary)" stroke-width="1.5"/><text x="8" y="12" text-anchor="middle" font-size="8" font-family="Poppins" font-weight="700" fill="var(--accent-primary)">K</text></svg>
+              KBL
+            </div>
+          </div>
+        </div>
+
+        <div class="swap-info" id="swapInfo">
+          <span class="swap-info__item" id="swapRate">Rate: connect wallet to load</span>
+        </div>
+
+        <button class="btn btn--primary btn--full" id="swapBtn" disabled>
+          Connect Wallet to Swap
+        </button>
+
+        <p class="swap-card__disclaimer">
+          Swaps execute via OPNet NativeSwap. KBL liquidity must be available on NativeSwap before swapping. <a href="https://motoswap.org" target="_blank" rel="noopener" class="link">Add liquidity on MotoSwap</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="about-section" id="about">
+  <div class="about-section__inner section-content">
+    <h2 class="section-title">Why <span class="text-accent">Kibble?</span></h2>
+    <p class="section-sub about-sub">Cats are independent, scarce, and indifferent to your opinion. So is KBL.</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-card__icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <!-- Cat ear icon -->
+            <circle cx="14" cy="16" r="9" stroke="var(--accent-primary)" stroke-width="2"/>
+            <path d="M8 11 L5 5 L11 9 Z" fill="var(--accent-primary)" opacity="0.7"/>
+            <path d="M20 11 L23 5 L17 9 Z" fill="var(--accent-primary)" opacity="0.7"/>
+          </svg>
+        </div>
+        <h3 class="feature-card__title">Bitcoin Native</h3>
+        <p class="feature-card__body">KBL lives on Bitcoin L1 via OPNet — not a sidechain, not a bridge. Cats don't like leashes, and KBL doesn't need them.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card__icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="11" stroke="var(--accent-primary)" stroke-width="2"/><path d="M14 7v7l4 4" stroke="var(--accent-primary)" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <h3 class="feature-card__title">21M Hard Cap</h3>
+        <p class="feature-card__body">21 million KBL. That's it. Forever. Cats are territorial — KBL doesn't dilute.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-card__icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M14 3L3 10v8l11 7 11-7v-8L14 3z" stroke="var(--accent-primary)" stroke-width="2" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 class="feature-card__title">OP20 Standard</h3>
+        <p class="feature-card__body">Fully compliant OP20 token — transfer, approve, burn all work out of the box. Even cats follow some rules.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTRACT SECTION -->
+<section class="contract-section section-content">
+  <div class="contract-card">
+    <span class="contract-card__label">Contract Address</span>
+    <div class="contract-card__row">
+      <span class="contract-card__address" id="contractAddress">Deploy your contract to get the address</span>
+      <button class="btn btn--ghost btn--sm" id="copyContractBtn" aria-label="Copy contract address">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="4" y="4" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M2 10V2h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Copy
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__brand">
+      <span class="footer__brand-name">Kibble (KBL)</span>
+      <span class="footer__brand-sub">A Bitcoin-native OP20 cat token</span>
+    </div>
+    <div class="footer__links">
+      <a href="https://opnet.org" target="_blank" rel="noopener" class="footer__link">OPNet</a>
+      <a href="https://motoswap.org" target="_blank" rel="noopener" class="footer__link">MotoSwap</a>
+      <a href="https://op-wallet.io" target="_blank" rel="noopener" class="footer__link">OP_WALLET</a>
+    </div>
+    <p class="footer__legal">KBL is an experimental token. Not financial advice. Cats are not responsible for your portfolio.</p>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast" role="alert" aria-live="polite"></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
